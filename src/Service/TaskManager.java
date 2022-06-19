@@ -1,36 +1,57 @@
-import java.util.ArrayList;
+package Service;
+
+import Model.Constants.Status;
+import Model.Epic;
+import Model.SubTask;
+import Model.Task;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class TaskManager {
-    private Integer taskId = 0;
+    protected static Integer taskId = 0;
     private HashMap<Integer, Task> taskHashMap = new HashMap<>();
     private HashMap<Integer, Epic> epicTaskHashMap = new HashMap<>();
     private HashMap<Integer, SubTask> subTaskHashMap = new HashMap<>();
 
     public Task createTask(Task task) {
+       if (!taskHashMap.containsValue(task)){
         taskId++;
         task.setTaskId(taskId);
         taskHashMap.put(taskId, task);
 
         return task;
-    }
+    }else {
+           System.out.println("This task already exist");
+           return null;
+       }
+       }
 
     public Epic createEpic(Epic epic) {
-        taskId++;
-        epic.setTaskId(taskId);
-        epicTaskHashMap.put(taskId, epic);
+        if (!epicTaskHashMap.containsValue(epic)) {
+            taskId++;
+            epic.setTaskId(taskId);
+            epicTaskHashMap.put(taskId, epic);
 
-        return epic;
+            return epic;
+        }else{
+            System.out.println("This epic already exist");
+            return null;
+        }
     }
 
     public SubTask createSubTask(SubTask subTask) {
-        taskId++;
-        subTask.setTaskId(taskId);
-        subTaskHashMap.put(taskId, subTask);
-        linkSubtaskToEpic(subTask);
+        if(!subTaskHashMap.containsValue(subTask)) {
+            taskId++;
+            subTask.setTaskId(taskId);
+            subTaskHashMap.put(taskId, subTask);
+            linkSubtaskToEpic(subTask);
 
-        return subTask;
+            return subTask;
+        }else{
+            System.out.println("This subTask already exist");
+            return null;
+        }
     }
 
     private void linkSubtaskToEpic(SubTask subTask) {
@@ -43,7 +64,7 @@ public class TaskManager {
     public String getTasks() {
         String result = null;
         for (Integer id : taskHashMap.keySet()) {
-            result += "\nTask Number " + id + ": " + taskHashMap.get(id).toString();
+            result += "\nModel.Task Number " + id + ": " + taskHashMap.get(id).toString();
         }
         return result;
     }
@@ -51,7 +72,7 @@ public class TaskManager {
     public String getEpics() {
         String result = null;
         for (Integer id : epicTaskHashMap.keySet()) {
-            result += "\nEpic Number " + id + ": " + epicTaskHashMap.get(id).toString();
+            result += "\nModel.Epic Number " + id + ": " + epicTaskHashMap.get(id).toString();
         }
         return result;
     }
@@ -59,7 +80,7 @@ public class TaskManager {
     public String getSubTasks() {
         String result = null;
         for (Integer id : subTaskHashMap.keySet()) {
-            result += "\nSubTask Number " + id + ": " + subTaskHashMap.get(id).toString();
+            result += "\nModel.SubTask Number " + id + ": " + subTaskHashMap.get(id).toString();
         }
         return result;
     }
@@ -79,7 +100,7 @@ public class TaskManager {
     public String getTaskById(int id) {
         String result;
         if (taskHashMap.containsKey(id)) {
-            result = "\nTask Number " + id + ": " + taskHashMap.get(id).toString();
+            result = "\nModel.Task Number " + id + ": " + taskHashMap.get(id).toString();
             return result;
         } else {
             Console.noTaskId();
@@ -90,7 +111,7 @@ public class TaskManager {
     public String getEpicById(int id) {
         String result;
         if (epicTaskHashMap.containsKey(id)) {
-            result = "\nEpic Number " + id + ": " + epicTaskHashMap.get(id).toString();
+            result = "\nModel.Epic Number " + id + ": " + epicTaskHashMap.get(id).toString();
             return result;
         } else {
             Console.noEpicId();
@@ -101,7 +122,7 @@ public class TaskManager {
     public String getSubTaskById(int id) {
         String result = null;
         if (subTaskHashMap.containsKey(id)) {
-            result = "\nSubTask Number " + id + ": " + subTaskHashMap.get(id).toString();
+            result = "\nModel.SubTask Number " + id + ": " + subTaskHashMap.get(id).toString();
             return result;
         } else {
             Console.noSubId();
@@ -109,9 +130,9 @@ public class TaskManager {
         }
     }
 
-    public void updateTask(int Id, Task task) {
-        if (taskHashMap.containsKey(Id)) {
-            taskHashMap.put(Id, task);
+    public void updateTask(int id, Task task) {
+        if (taskHashMap.containsKey(id)) {
+            taskHashMap.put(id, task);
         } else {
             Console.noTaskId();
         }
@@ -162,10 +183,10 @@ public class TaskManager {
     public String getSubTaskListByEpicId(int id) {
         String result = null;
         if (epicTaskHashMap.containsKey(id)) {
-            result = "\nEpic Number " + id + ": " + epicTaskHashMap.get(id).toString();
+            result = "\nModel.Epic Number " + id + ": " + epicTaskHashMap.get(id).toString();
             for (Epic epic : epicTaskHashMap.values()) {
                 for (Integer subId : epic.getSubTasksIds()) {
-                    result += "\nSubTask Number " + subId + ": " + subTaskHashMap.get(subId).toString();
+                    result += "\nModel.SubTask Number " + subId + ": " + subTaskHashMap.get(subId).toString();
                 }
             }
             return result;

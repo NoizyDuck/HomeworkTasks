@@ -1,3 +1,6 @@
+package Model;
+import Model.Constants.Status;
+
 public class Task {
     private Integer taskId;
     private String taskName;

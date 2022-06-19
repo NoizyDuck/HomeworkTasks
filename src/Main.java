@@ -1,15 +1,23 @@
-
+import Model.Constants.Status;
+import Model.Epic;
+import Model.SubTask;
+import Model.Task;
+import Service.TaskManager;
 
 public class Main {
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
-        Task task = new Task("First Task", "Task description", Status.NEW);
+       Task task = new Task("First Model.Task", "Model.Task description", Status.NEW);
+        Task task1 = new Task("Second Model.Task","SecondTaskDescription", Status.DONE );
         taskManager.createTask(task);
+        taskManager.createTask(task1);
 
 
 
-        Epic epic = new Epic("First epic", "Epic description");
-        Epic epic2 = new Epic("Second epic", "Epic 2 description");
+
+
+        Epic epic = new Epic("First epic", "Model.Epic description");
+        Epic epic2 = new Epic("Second epic", "Model.Epic 2 description");
         Epic createdEpic = taskManager.createEpic(epic);
         Epic createdEpic2 = taskManager.createEpic(epic2);
 

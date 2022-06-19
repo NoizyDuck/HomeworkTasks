@@ -1,4 +1,8 @@
-public class SubTask extends Task{
+package Model;
+import Model.Constants.Status;
+import Model.Task;
+
+public class SubTask extends Task {
     private int epicId;
 
     public SubTask(String taskName, String taskDescription, Status status, int epicId) {
