@@ -1,6 +1,6 @@
-package Model;
-import Model.Constants.Status;
-import Model.Task;
+package model;
+import model.constants.Status;
+
 
 public class SubTask extends Task {
     private int epicId;

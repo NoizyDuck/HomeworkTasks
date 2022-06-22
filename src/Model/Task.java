@@ -1,7 +1,7 @@
-package Model;
-import Model.Constants.Status;
+package model;
+import model.constants.Status;
 
-public class Task {
+public class Task  {
     private Integer taskId;
     private String taskName;
     private String taskDescription;

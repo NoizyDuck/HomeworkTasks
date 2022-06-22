@@ -1,8 +1,4 @@
-package Model;
-
-import Model.SubTask;
-import Model.Task;
-
+package model;
 import java.util.ArrayList;
 import java.util.List;
 

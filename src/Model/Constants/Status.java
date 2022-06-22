@@ -1,6 +1,4 @@
-package Model.Constants;
-
-import Model.Task;
+package model.constants;
 public enum Status {
     NEW, DONE, IN_PROGRESS
 }
