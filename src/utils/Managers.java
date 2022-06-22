@@ -8,8 +8,8 @@ import service.implementation.InMemoryTaskManager;
 public class Managers {
     private static TaskManager taskManager = new InMemoryTaskManager();
     private static HistoryManager historyManager;
-    //TODO прочти про паттерн singleton
-    public static TaskManager getDefault() {
+
+   public static TaskManager getDefault() {
         if (taskManager == null) {
             taskManager = new InMemoryTaskManager();
             return taskManager;
